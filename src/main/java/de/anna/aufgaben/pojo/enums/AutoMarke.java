@@ -6,6 +6,6 @@
  */
 public enum AutoMarke {
 
-    AUDI, OPEL, NISSAN, BMW
+    AUDI, OPEL, NISSAN, BMW, MALUCH
 
 }

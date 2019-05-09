@@ -130,10 +130,10 @@ public class DatenGenerator {
 
     private Person createPerson4(){
 
-        Person person = new Person("344556", "Aga", "Opryszczko", 41);
+        Person person = new Person("344556", "Kasia", "Kowalska", 41);
 
         List<Adresse> adresseList = new ArrayList<>();
-        fuegeAdresseinListeHinzu(adresseList,"GGG", 43, "Bielsk");
+        fuegeAdresseinListeHinzu(adresseList,"GGG", 43, "Wroclaw");
         person.setAdresseList(adresseList);
 
         List<Auto> autoList = new ArrayList<>();
@@ -149,11 +149,11 @@ public class DatenGenerator {
 
     private Person createPerson5(){
 
-        Person person = new Person("3475566", "Piotr", "Opryszczko", 36);
+        Person person = new Person("3475566", "Kuba", "Wojewodzki", 36);
 
         List<Adresse> adresseList = new ArrayList<>();
         fuegeAdresseinListeHinzu(adresseList, "HHH", 90, "Bialystok");
-        fuegeAdresseinListeHinzu(adresseList, "III", 78, "Bielsk");
+        fuegeAdresseinListeHinzu(adresseList, "III", 78, "Radom");
         person.setAdresseList(adresseList);
 
         List<Auto> autoList = new ArrayList<>();
@@ -170,10 +170,10 @@ public class DatenGenerator {
 
     private Person createPerson6(){
 
-        Person person = new Person("44565377", "Anna", "Opryszczko", 34);
+        Person person = new Person("44565377", "Anna", "Kwiatkowska", 34);
 
         List<Adresse> adresseList = new ArrayList<>();
-        fuegeAdresseinListeHinzu(adresseList, "JJJ", 54, "Bielsk");
+        fuegeAdresseinListeHinzu(adresseList, "JJJ", 54, "Poznan");
         person.setAdresseList(adresseList);
 
         List<Auto> autoList = new ArrayList<>();
@@ -189,10 +189,10 @@ public class DatenGenerator {
 
     private Person createPerson7(){
 
-        Person person = new Person("44560977", "Max", "Opryszczko", 4);
+        Person person = new Person("44560977", "Zosia", "Przybylska", 4);
 
         List<Adresse> adresseList = new ArrayList<>();
-        fuegeAdresseinListeHinzu(adresseList, "KKK", 87, "Bielsk");
+        fuegeAdresseinListeHinzu(adresseList, "KKK", 87, "Gdansk");
         fuegeAdresseinListeHinzu(adresseList, "LLL", 90, "Warszawa");
         fuegeAdresseinListeHinzu(adresseList, "MMM", 34, "Bialystok");
         person.setAdresseList(adresseList);

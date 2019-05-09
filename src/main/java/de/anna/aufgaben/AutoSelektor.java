@@ -27,27 +27,13 @@ public class AutoSelektor {
 
         List<Person> personListMitAutomarke = new ArrayList<>();
 
-        for(Person person : personList){
+        personList.forEach(person -> {
 
             List<Auto> autoList = person.getAutoList();
 
             Stream<Auto> autoStream = autoList.stream().filter(auto -> auto.getMarke().equals(marke)).limit(1);
             autoStream.forEach(a -> personListMitAutomarke.add(person));
-
-            /*
-
-            for(Auto auto : autoList){
-                AutoMarke autoMarke = auto.getMarke();
-
-                if(autoMarke.equals(marke)){
-                    personListMitAutomarke.add(person);
-                }
-
-            }
-            */
-
-        }
-
+        });
 
         return personListMitAutomarke;
     }
