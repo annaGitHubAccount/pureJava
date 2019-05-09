@@ -7,6 +7,7 @@ import de.anna.aufgaben.pojo.enums.AutoMarke;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class AutoSelektor {
 
@@ -16,13 +17,13 @@ public class AutoSelektor {
         DatenGenerator datenGenerator = new DatenGenerator();
         List<Person> personList = datenGenerator.generatePersonen();
 
-        List<Person> personenMitAutoMarke = zeigePersonMitAutoMarkeAn(personList, AutoMarke.AUDI);
+        List<Person> personenMitAutoMarke = suchPersonMitAutoMarke(personList, AutoMarke.AUDI);
 
 
     }
 
 
-    private static List<Person> zeigePersonMitAutoMarkeAn(List<Person> personList, AutoMarke marke) {
+    private static List<Person> suchPersonMitAutoMarke(List<Person> personList, AutoMarke marke) {
 
         List<Person> personListMitAutomarke = new ArrayList<>();
 
@@ -30,15 +31,8 @@ public class AutoSelektor {
 
             List<Auto> autoList = person.getAutoList();
 
-            autoList.stream().forEach(
-                    (auto) -> {
-                        AutoMarke autoMarke = auto.getMarke();
-
-                        if(autoMarke.equals(marke)){
-                            personListMitAutomarke.add(person);
-                        }
-                    }
-                    );
+            Stream<Auto> autoStream = autoList.stream().filter(auto -> auto.getMarke().equals(marke)).limit(1);
+            autoStream.forEach(a -> personListMitAutomarke.add(person));
 
             /*
 
