@@ -23,9 +23,10 @@ public class PersonenAufBuchstabe {
 
     private static Map<Character, List<Person>> holeMapVonPersonenAufBuchstabe(List<Person> personList) {
 
-        //  return personList.stream().collect(Collectors.groupingBy(person -> person.getNachname().substring(0, 1)));
-
         return personList.stream().collect(Collectors.groupingBy(PersonenAufBuchstabe::holeErsterBuchstabeVonNachnamen));
+
+        // albo przez lambde:
+        //  return personList.stream().collect(Collectors.groupingBy(person -> person.getNachname().charAt(0)));
     }
 
     private static Character holeErsterBuchstabeVonNachnamen(Person person){

@@ -32,7 +32,7 @@ public class AutoSelektor {
             List<Auto> autoList = person.getAutoList();
 
             Stream<Auto> autoStream = autoList.stream().filter(auto -> auto.getMarke().equals(marke)).limit(1);
-            autoStream.forEach(a -> personListMitAutomarke.add(person));
+            autoStream.forEach(auto -> personListMitAutomarke.add(person));
         });
 
         return personListMitAutomarke;
