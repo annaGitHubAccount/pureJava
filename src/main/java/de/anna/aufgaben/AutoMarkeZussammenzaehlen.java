@@ -30,9 +30,8 @@ public class AutoMarkeZussammenzaehlen {
             for(Auto auto : autoList){
                 AutoMarke marke = auto.getMarke();
 
-                if(autoMarkegezaehlt.get(marke.toString()) == null){
-                    autoMarkegezaehlt.put(marke.toString(), 0);
-                }
+                //if(autoMarkegezaehlt.get(marke.toString()) == null)
+                autoMarkegezaehlt.putIfAbsent(marke.toString(), 0);
 
                 Integer anzahlVonAutomarke = autoMarkegezaehlt.get(marke.toString());
                 anzahlVonAutomarke ++;
