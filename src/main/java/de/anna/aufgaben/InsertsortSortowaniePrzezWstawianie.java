@@ -26,7 +26,8 @@ public class InsertsortSortowaniePrzezWstawianie {
 
         int k;
 
-        // dla kazdego indexu "i" beda kazdorazowo sprawdzanane liczby przy pomocy indexu "j" od tylu:
+        // dla kazdego indexu "i" beda kazdorazowo sprawdzane wszystkie liczby przy pomocy indexu "j" od tylu.
+        // po kazdym sprawdzeniu idex "i" przesuwa sie do przodu i dana liczba jest przesuwana na nowe miejsce
         for (int i = 0; i < intArr.length; i++) {
 
             for (int j = intArr.length - 1; j > 0; j--) {
