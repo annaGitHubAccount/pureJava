@@ -2,10 +2,7 @@ package de.anna.aufgaben;
 
 import de.anna.aufgaben.daten.util.StringUtils;
 
-import java.io.IOException;
 import java.util.*;
-import java.util.function.BinaryOperator;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class CityAufBuchstabeZeigen {
@@ -18,7 +15,7 @@ public class CityAufBuchstabeZeigen {
 
         try {
             Map<String, List<String>> cityAufBuchstabeAuflisten = cityAufBuchstabeAuflistenJava8(cities);
-            mapAuflisten(cityAufBuchstabeAuflisten);
+            mapAnzeigenJava8(cityAufBuchstabeAuflisten);
 
         } catch (RuntimeException e) {
             System.out.println("Es gibt solche Städte nicht !");
@@ -37,8 +34,49 @@ public class CityAufBuchstabeZeigen {
     }
 
 
+    private static void mapAnzeigenJava8(Map<String, List<String>> cityMap) {
 
-    private static void mapAuflisten(Map<String, List<String>> cityMap){
+        cityMap.forEach((ersterBuchstabe, citiesList) -> {
+
+            List<String> meineArrayList = new ArrayList<String>(citiesList) {
+
+                @Override
+                public String toString() {
+
+                    Iterator<String> it = iterator();
+                    if (! it.hasNext())
+                        return "[]";
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.append('<');
+
+                    while(it.hasNext()){
+                        String next = it.next();
+
+                        if(next.equals("Hamburg")){
+                            String nextToUpperCase = next.toUpperCase();
+                            sb.append(nextToUpperCase);
+                        }else {
+                            sb.append(next);
+                        }
+
+                        if(it.hasNext()) {
+                            sb.append(',');
+                        }
+                    }
+                    sb.append('>');
+
+                    return sb.toString();
+                }
+            };
+
+            System.out.println((ersterBuchstabe + " - " + meineArrayList));
+        });
+
+    }
+
+
+    private static void mapAnzeigen(Map<String, List<String>> cityMap) {
 
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -51,14 +89,14 @@ public class CityAufBuchstabeZeigen {
 
             int index = 1;
             int citiesListValueSize = citiesListValue.size();
-            for(String city : citiesListValue){
+            for (String city : citiesListValue) {
 
                 stringBuffer.append(city);
 
-                if(index < citiesListValueSize) {
+                if (index < citiesListValueSize) {
                     stringBuffer.append(", ");
                 }
-                index ++;
+                index++;
             }
 
             stringBuffer.append("\n");

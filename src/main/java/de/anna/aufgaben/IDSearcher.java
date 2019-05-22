@@ -1,5 +1,7 @@
 package de.anna.aufgaben;
 
+import de.anna.aufgaben.daten.util.StringUtils;
+
 import java.util.*;
 
 public class IDSearcher {
@@ -18,6 +20,13 @@ public class IDSearcher {
         String text2 = "[1,2,(3)][1,2][1],[1,(2),3,4]";
         List<List<String>> listeVonZifferOhneEinfacheKlammer = findeListeVonZifferOhneEinfacheKlammer(text2);
         System.out.println(listeVonZifferOhneEinfacheKlammer);
+
+        String text3 = "<key1, value1><key2, value2><key3, value3><key4, value4><key5, value5>";
+        Map<String, String> findeMapInText2 = parseMapInTextMitEckigenKlammern(text3);
+        System.out.println(findeMapInText2);
+
+        int charakterInString = StringUtils.zaehleCharakterInString("Alabama", 'a');
+        System.out.println(charakterInString);
 
     }
 
@@ -109,4 +118,51 @@ public class IDSearcher {
 
         return zifferList;
     }
+
+
+    private static Map<String, String> parseMapInTextMitEckigenKlammern(String text) {
+
+        validieren(text);
+
+        Map<String, String> map = new TreeMap<>();
+
+        String[] textSplitted = text.split("<");
+
+        for (String textString : textSplitted) {
+
+            if (textString.equals("")) {
+                continue;
+            }
+
+            int strLength = textString.length() - 1;
+            String strOhneKlammer = textString.substring(0, strLength);
+            String[] keyValueString = strOhneKlammer.split(",");
+            String key = keyValueString[0];
+            String value = keyValueString[1].trim();
+            map.put(key, value);
+        }
+
+        return map;
+    }
+
+    private static void validieren(String text) {
+
+        if(text == null || text.equals("")){
+            throw new RuntimeException("Ihr Text ist leer !");
+        }
+
+        int anzahlVonLinksKlammer = StringUtils.zaehleCharakterInString(text, '<');
+        int anzahlVonRechtsKlammer = StringUtils.zaehleCharakterInString(text, '>');
+
+        if (anzahlVonLinksKlammer != anzahlVonRechtsKlammer){
+            throw new RuntimeException("Anzahl von Klammer unterscheidet sich !");
+        }
+
+    }
+
+
 }
+
+
+
+
