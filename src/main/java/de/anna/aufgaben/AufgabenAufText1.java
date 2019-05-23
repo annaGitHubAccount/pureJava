@@ -4,7 +4,7 @@ import de.anna.aufgaben.daten.util.StringUtils;
 
 import java.util.*;
 
-public class IDSearcher {
+public class AufgabenAufText1 {
 
 
     public static void main(String[] args) {
