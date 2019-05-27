@@ -9,30 +9,31 @@ public class RegexSpiel {
         //String str = "aa((bb))cc((dd))ee((ff))gg";
 
 
-        find1();
+        find();
 
     }
 
-    private static void ex1() {
+    private static void replaceAll() {
         String example = "yfdghbxfghcjhdfcgjdfcg   .";
         String pattern = "(\\w)(\\s+)([\\.,])";
         System.out.println(example.replaceAll(pattern, "$1$3"));
     }
 
 
-    private static void find1() {
+    private static void find() {
 
         String stringToSearch = "aaa(bbb)ccc(ddd)eee";
 
-        Pattern p = Pattern.compile("(\\()(\\w+)(\\))");
-        Matcher m = p.matcher(stringToSearch);
+        //Pattern pattern = Pattern.compile("(\\()(\\w+)(\\))");
+        Pattern pattern = Pattern.compile("(\\()(\\w+)(\\))");
+        Matcher matcher = pattern.matcher(stringToSearch);
 
-        StringBuffer theGroup = new StringBuffer();
+        StringBuffer stringBuffer = new StringBuffer();
 
-        while(m.find()) {
-            theGroup.append(m.group(2));
+        while(matcher.find()) {
+            stringBuffer.append(matcher.group(2));
         }
 
-        System.out.println(theGroup);
+        System.out.println(stringBuffer);
     }
 }
