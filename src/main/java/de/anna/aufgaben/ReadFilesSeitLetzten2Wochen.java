@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 // File reprezentuje plik albo katalog. Jak chce zbadac co jest czym to uzywam metod z File
 //File tempPath = new File("D:\\Workspace\\temp");
 
-public class SendNotificationFuerLetzte2Wochen {
+public class ReadFilesSeitLetzten2Wochen {
 
 
     public static void main(String[] args) {
