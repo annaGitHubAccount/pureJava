@@ -5,10 +5,7 @@ import de.anna.aufgaben.helper.WortData;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class FileUtils {
 
@@ -68,10 +65,17 @@ public class FileUtils {
 
     public static List<WortData> mapToListVonWortData(Map<String, Integer> map){
 
+        //klasa pomocnicza do zmiany mapy na liste
         List<WortData> wortDataList = new ArrayList<>();
 
+        Set<String> setVonWords = map.keySet();
 
+        for(String word : setVonWords) {
 
+            Integer anzahlVonWord = map.get(word);
+            WortData wortData = new WortData(word, anzahlVonWord);
+            wortDataList.add(wortData);
+        }
 
         return wortDataList;
     }
@@ -80,7 +84,14 @@ public class FileUtils {
 
     public static List<WortData> wortDataListSortPerAnzahl(List<WortData> wortDataList){
 
-        return null;
+        Comparator<WortData> wortDataComparator = (wortData1, wortData2) -> {
+
+            return wortData1.getAnzahl().compareTo(wortData2.getAnzahl());
+        };
+
+        wortDataList.sort(wortDataComparator.reversed());
+
+       return wortDataList;
     }
 
 }

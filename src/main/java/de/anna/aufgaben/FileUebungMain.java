@@ -1,9 +1,11 @@
 package de.anna.aufgaben;
 
 import de.anna.aufgaben.daten.util.FileUtils;
+import de.anna.aufgaben.helper.WortData;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 public class FileUebungMain {
@@ -11,18 +13,29 @@ public class FileUebungMain {
     public static void main(String[] args) {
 
         Path tempPath = Paths.get("d:\\Workspace\\temp\\beispiel.txt");
-        Map<String, Integer> woerterImTextZusammenZaehlen = countWords(tempPath);
 
-
+        showOnScreen(retrieveFileWordStatistic(tempPath));
 
 
     }
 
+    private static void showOnScreen(List<WortData> retrieveFileWordStatistic) {
+
+        retrieveFileWordStatistic.forEach(System.out::println);
+
+    }
 
 
-    private static Map<String, Integer> countWords(Path tempPath) {
+    private static List<WortData> retrieveFileWordStatistic(Path tempPath) {
 
         String inhaltEinesFiles = FileUtils.readFile(tempPath);
-        return FileUtils.woerterImTextZusammenZaehlen(inhaltEinesFiles);
+
+        Map<String, Integer> woerterImTextZusammenZaehlen = FileUtils.woerterImTextZusammenZaehlen(inhaltEinesFiles);
+
+        List<WortData> wortDataList = FileUtils.mapToListVonWortData(woerterImTextZusammenZaehlen);
+
+        return FileUtils.wortDataListSortPerAnzahl(wortDataList);
     }
+
+
 }
