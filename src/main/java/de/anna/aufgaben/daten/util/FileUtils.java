@@ -1,5 +1,6 @@
 package de.anna.aufgaben.daten.util;
 
+
 import de.anna.aufgaben.helper.WortData;
 
 import java.io.IOException;
@@ -9,6 +10,8 @@ import java.util.*;
 
 public class FileUtils {
 
+
+    private static final String EMPTY_STRING = "";
 
     public static String readFile(Path path) {
 
@@ -24,11 +27,12 @@ public class FileUtils {
     }
 
 
-    public static Map<String, Integer> woerterImTextZusammenZaehlen(String text) {
+    public static Map<String, Integer> woerterImTextZusammenZaehlen(String textVomFile) {
 
         Map<String, Integer> map = new TreeMap<>();
 
-        String[] textSplitted = text.split("\\s+");
+        //   \\s - to jest whitespace; \\s+ - to jest wiecej whitespace niz 1
+        String[] textSplitted = textVomFile.split("\\s+");
 
         for (String word : textSplitted) {
 
@@ -36,7 +40,7 @@ public class FileUtils {
                 continue;
             }
 
-            word = filternDenText(word);
+            word = filternDenText(word, "\"", ",", ".", "'", ":");
 
             if (map.get(word) == null) {
                 map.put(word, 1);
@@ -50,27 +54,25 @@ public class FileUtils {
         return map;
     }
 
+    // String... signsVonText - argumenty dopisuje do metody dynamicznie, ile chce
+    public static String filternDenText(String word, String... signsVonText) {
 
-    public static String filternDenText(String word) {
+        for (String sign : signsVonText) {
+            word = word.toLowerCase().replace(sign, EMPTY_STRING);
+        }
 
-        return word.toLowerCase().
-                replace("\"", "").
-                replace(",", "").
-                replace(".", "").
-                replace("'", "").
-                replace(":", "");
-
+        return word;
     }
 
 
-    public static List<WortData> mapToListVonWortData(Map<String, Integer> map){
+    public static List<WortData> mapToListVonWortData(Map<String, Integer> map) {
 
         //klasa pomocnicza do zmiany mapy na liste
         List<WortData> wortDataList = new ArrayList<>();
 
         Set<String> setVonWords = map.keySet();
 
-        for(String word : setVonWords) {
+        for (String word : setVonWords) {
 
             Integer anzahlVonWord = map.get(word);
             WortData wortData = new WortData(word, anzahlVonWord);
@@ -81,8 +83,7 @@ public class FileUtils {
     }
 
 
-
-    public static List<WortData> wortDataListSortPerAnzahl(List<WortData> wortDataList){
+    public static List<WortData> wortDataListSortPerAnzahl(List<WortData> wortDataList) {
 
         Comparator<WortData> wortDataComparator = (wortData1, wortData2) -> {
 
@@ -91,7 +92,39 @@ public class FileUtils {
 
         wortDataList.sort(wortDataComparator.reversed());
 
-       return wortDataList;
+        return wortDataList;
     }
+
+
+
+    public static Map<Integer, List<String>> createNewMapForFileStatistics(Map<String, Integer> woerterImTextZusammenZaehlen){
+
+        // sortowanie mapy w odwrotnej kolejnosci
+        Map<Integer, List<String>> newMap = new TreeMap<>(Comparator.reverseOrder());
+
+        Set<String> wordsSetOfKeys = woerterImTextZusammenZaehlen.keySet();
+
+        for(String word : wordsSetOfKeys){
+
+            Integer anzahlVonWords = woerterImTextZusammenZaehlen.get(word);
+
+
+            if(newMap.get(anzahlVonWords) == null) {
+
+                List<String> wordsList = new ArrayList<>();
+                wordsList.add(word);
+                newMap.put(anzahlVonWords, wordsList);
+
+            }else {
+
+                List<String> wordsList = newMap.get(anzahlVonWords);
+                wordsList.add(word);
+            }
+        }
+
+        return newMap;
+    }
+
+
 
 }
