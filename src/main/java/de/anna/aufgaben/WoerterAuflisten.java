@@ -7,13 +7,13 @@ public class WoerterAuflisten {
 
     public static void main(String[] args) {
 
-        List<String> namenAuflisten = namenAuflisten();
+        List<String> namenAuflisten = namenAuflistenASCOderDESC();
         System.out.println(namenAuflisten);
     }
 
 
 
-    private static List<String> namenAuflisten(){
+    private static List<String> namenAuflistenASCOderDESC(){
 
         List<String> namenList = new ArrayList<>();
 

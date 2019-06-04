@@ -30,6 +30,7 @@ public class CityAufBuchstabeZeigen {
 
         String[] citiesSplitted = cities.split(",");
 
+        // groupingBy zwraca mape !!!
         return Arrays.stream(citiesSplitted).collect(Collectors.groupingBy(city -> city.trim().substring(0, 1)));
     }
 
@@ -43,15 +44,15 @@ public class CityAufBuchstabeZeigen {
                 @Override
                 public String toString() {
 
-                    Iterator<String> it = iterator();
-                    if (! it.hasNext())
+                    Iterator<String> iterator = iterator();
+                    if (! iterator.hasNext())
                         return "[]";
 
                     StringBuilder sb = new StringBuilder();
                     sb.append('<');
 
-                    while(it.hasNext()){
-                        String next = it.next();
+                    while(iterator.hasNext()){
+                        String next = iterator.next();
 
                         if(next.equals("Hamburg")){
                             String nextToUpperCase = next.toUpperCase();
@@ -60,7 +61,7 @@ public class CityAufBuchstabeZeigen {
                             sb.append(next);
                         }
 
-                        if(it.hasNext()) {
+                        if(iterator.hasNext()) {
                             sb.append(',');
                         }
                     }

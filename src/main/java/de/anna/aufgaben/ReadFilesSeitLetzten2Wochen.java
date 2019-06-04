@@ -60,6 +60,7 @@ public class ReadFilesSeitLetzten2Wochen {
     private static List<Path> datenBis2WochenZurueckliefernJava8(Path filesPath, Instant timeInDays) throws IOException {
 
         Stream<Path> pathStream = Files.list(filesPath);
+
         return pathStream.filter(path -> {
                 return pathPredicate(path, timeInDays);
         }).collect(Collectors.toList());

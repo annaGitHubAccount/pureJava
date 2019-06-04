@@ -5,7 +5,6 @@ import de.anna.aufgaben.pojo.Auto;
 import de.anna.aufgaben.pojo.Person;
 import de.anna.aufgaben.pojo.enums.AutoMarke;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -46,9 +45,9 @@ public class AutoSelektor2 {
 
         List<Auto> autoListEinerPerson = person.getAutoList();
 
-        for(Auto autoEierPerson : autoListEinerPerson){
+        for(Auto autoEinerPerson : autoListEinerPerson){
 
-            if(autoEierPerson.getMarke().equals(autoMarke)){
+            if(autoEinerPerson.getMarke().equals(autoMarke)){
                 return true;
             }
         }
