@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: annpo
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_191
+Main-Class: de.anna.jdbc.exercise.MyPostgreSQLDatabaseConnection
+Class-Path: ./lib/postgresql-42.2.5.jar
