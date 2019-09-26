@@ -1,4 +1,4 @@
-package de.anna.aufgaben.java8;
+package de.anna.aufgaben.java7und8;
 
 import java.util.ArrayList;
 import java.util.List;
